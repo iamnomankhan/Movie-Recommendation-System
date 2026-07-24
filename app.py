@@ -1,6 +1,8 @@
 import streamlit as st
 import pickle
 import requests
+import os
+import gdown
 
 # -------------------------------
 # Page Configuration
@@ -16,7 +18,14 @@ st.set_page_config(
 # Load Data
 # -------------------------------
 movies = pickle.load(open("models/movies.pkl", "rb"))
-similarity = pickle.load(open("models/similarity.pkl", "rb"))
+
+SIMILARITY_PATH = "models/similarity.pkl"
+
+if not os.path.exists(SIMILARITY_PATH):
+    url = "https://drive.google.com/uc?id=1YaHAnJqV8L4eKl0cPVCcbV-12KlqeT56"
+    gdown.download(url, SIMILARITY_PATH, quiet=False)
+
+similarity = pickle.load(open(SIMILARITY_PATH, "rb"))
 
 # -------------------------------
 # TMDB API KEY
