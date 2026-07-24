@@ -5,5 +5,4 @@ scikit-learn
 requests
 nltk
 joblib
-python 3.12.0
 gdown
